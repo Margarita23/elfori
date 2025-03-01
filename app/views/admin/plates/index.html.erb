@@ -1,0 +1,40 @@
+<div class="plates__cover">
+  <h1>Відтінки для колекції "<%= @tile_collection.title %>"</h1>
+
+  <%= link_to 'Додати відтінок', new_admin_tile_collection_plate_path(@tile_collection), class: 'btn btn-primary plate-btn__add' %>
+
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Назва</th>
+        <th>Зображення</th>
+        <th>Дії</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @plates.each do |plate| %>
+        <tr>
+          <td><%= plate.id %></td>
+          <td><%= plate.title %></td>
+          <td>
+            <% if plate.image.attached? %>
+              <%= image_tag plate.image.variant(resize: "100x100"), class: "image" %>
+            <% else %>
+              Немає зображення
+            <% end %>
+          </td>
+          <td>
+            <div class="plates__action">
+              <%= link_to 'Редагувати', edit_admin_tile_collection_plate_path(@tile_collection, plate), class: 'btn btn-warning' %>
+              <%= button_to 'Видалити', admin_tile_collection_plate_path(@tile_collection, plate), method: :delete, class: 'btn btn-danger' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Назад до колекцій', admin_tile_collections_path, class: 'btn btn-secondary' %>
+
+</div>

@@ -1,0 +1,45 @@
+<h1>Колекції плитки</h1>
+
+<%= link_to 'Додати колекцію', new_admin_tile_collection_path, class: 'btn btn-primary' %>
+
+<table class="items-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Назва</th>
+      <th>Опис</th>
+      <th>Опубліковано</th>
+      <th>Зображення</th>
+			<th>Plates</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tile_collections.each do |collection| %>
+      <tr>
+        <td><%= collection.id %></td>
+        <td>
+					<%= link_to collection.title %>
+				</td>
+        <td><%= collection.description.truncate(50) %></td>
+        <td><%= collection.publish ? 'Так' : 'Ні' %></td>
+        <td>
+          <% if collection.images.attached? %>
+            <%= image_tag collection.images.first.variant(resize: "100x100"), class: "image" %>
+          <% else %>
+            Немає зображення
+          <% end %>
+        </td>
+				<td>
+					<%= link_to "Список Plates", admin_tile_collection_plates_path(collection), class: 'collection-title-link' %>
+				</td>
+        <td>
+          <div class="plates__action">
+            <%= link_to 'Редагувати', edit_admin_tile_collection_path(collection), class: 'btn btn-warning' %>
+            <%= button_to 'Видалити', admin_tile_collection_path(collection), method: :delete, class: 'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

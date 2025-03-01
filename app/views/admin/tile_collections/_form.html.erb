@@ -1,0 +1,36 @@
+<h1><%= @tile_collection.new_record? ? 'Створити Колекцію' : 'Редагувати Колекцію' %></h1>
+
+<%= form_with model: [:admin, @tile_collection], local: true, html: { multipart: true, class: 'item-form' } do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Назва" %>
+    <%= f.text_field :title, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Опис" %>
+    <%= f.text_area :description, class: 'form-control', rows: 5 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :publish, "Опублікувати" %>
+    <%= f.check_box :publish %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :images, "Зображення" %>
+    <%= f.file_field :images, multiple: true, class: 'form-control' %>
+  </div>
+
+  <% if @tile_collection.images.attached? %>
+    <div class="image-preview">
+      <% @tile_collection.images.each do |image| %>
+        <%= image_tag image.variant(resize: "150x150"), class: "preview-img" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.submit @tile_collection.new_record? ? "Створити" : "Оновити", class: 'btn btn-primary' %>
+    <%= link_to 'Назад', admin_tile_collections_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

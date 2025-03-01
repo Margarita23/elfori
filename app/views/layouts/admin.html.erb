@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Адмін панель</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+		<%= stylesheet_link_tag 'application', media: 'all', media: 'all' %>
+	</head>
+	<body>
+		<nav>
+			<%= link_to "Головна", admin_root_path %> |
+			<%= link_to "Колекції", admin_tile_collections_path %> |
+			<%= button_to "Вийти", destroy_admin_session_path, method: :delete %>
+		</nav>
+
+		<%= yield %>
+	</body>
+</html>

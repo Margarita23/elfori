@@ -1,0 +1,33 @@
+<div class="gallery">
+
+</div>
+<section class="plates-cover">
+	<div class="plates">
+		<div class="plates__tile">
+			<h2 class="tile__title"><%= @tile_collection.title %></h2>
+			<div class="tile__desc"><%= @tile_collection.description %></div>
+			<div class="tile__image"><img src=""/></div>
+		</div>
+		<div class="plates__list-cover">
+			<% if @plates.empty? %>
+				<span class="plates__list plates__list--empty">Here is no any plates yet.</span>
+
+			<% else %>
+				<ul class="plates__list">
+				<% @plates.each do |plate| %>
+					<li class="plates__item">
+						<% if plate.image.attached? %>
+							<img src="<%= url_for(plate.image) %>" class="plates__item-image"/>
+						<% else %>
+							<%= plate.title.first.upcase %>
+						<% end %>
+					</li>
+				<% end %>
+				</ul>
+			<% end %>
+			
+		</div>
+	</div>
+	<button class="invoice-btn">УЗНАТЬ ЦЕНУ</button>
+</section>
+

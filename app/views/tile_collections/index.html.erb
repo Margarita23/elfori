@@ -1,0 +1,10 @@
+<section class="collections">
+  <% @tile_collections.each do |collection| %>
+    <a href="<%= tile_collection_plates_path(collection) %>" class="collections__item">
+      <div class="collections__content">
+        <h3><%= collection.title %></h3>
+        <p><%= collection.description %></p>
+      </div>
+    </a>
+  <% end %>
+</section>

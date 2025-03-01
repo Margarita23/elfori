@@ -1,0 +1,2 @@
+module TileCollectionsHelper
+end

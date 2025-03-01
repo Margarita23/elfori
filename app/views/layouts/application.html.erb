@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hexa</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", media: 'all', "data-turbo-track": "reload" %>
+  </head>
+
+  <body>
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <div class="wrapper">
+      <%= render 'partials/header' %>
+    
+
+      <main class="content">
+        <%= yield %>
+      </main>
+
+      <%= render 'partials/invite_footer' %>
+    
+      <%= render 'partials/footer' %>
+    </div>
+  </body>
+
+</html>
