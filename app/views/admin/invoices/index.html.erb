@@ -1,2 +1,32 @@
-<h1>Admin::Invoices#index</h1>
-<p>Find me in app/views/admin/invoices/index.html.erb</p>
+<h1>Запити на ціну</h1>
+
+<table class="items-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ім'я</th>
+      <th>Телефон</th>
+      <th>Колекція</th>
+      <th>Плитка</th>
+      <th>Дата запиту</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.id %></td>
+        <td><%= invoice.name %></td>
+        <td><%= invoice.phone %></td>
+        <td><%= invoice.tile_collection.title if invoice.tile_collection %></td>
+        <td><%= invoice.plate.title if invoice.plate %></td>
+        <td><%= invoice.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+        <td>
+          <div class="plates__action">
+            <%= button_to 'Видалити', admin_invoice_path(invoice.id), method: :delete, class: 'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

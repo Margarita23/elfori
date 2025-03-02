@@ -3,6 +3,7 @@ class PlatesController < ApplicationController
 
   def index
     @plates = @tile_collection.plates
+    @invoice = Invoice.new
   end
 
   private

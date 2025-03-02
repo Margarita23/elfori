@@ -6,11 +6,13 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     if @invoice.save
-      AdminMailer.new_invoice(@invoice).deliver_now
-      redirect_to root_path, notice: 'Запит успішно відправлено!'
+      flash[:notice] = "Запит успішно відправлено!"
+      # AdminMailer.new_invoice(@invoice).deliver_now
     else
-      render :new
+      flash[:notice] = "Запит не відправлено!"
     end
+
+    redirect_to tile_collection_plates_path(invoice_params[:tile_collection_id])
   end
 
   private

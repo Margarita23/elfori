@@ -28,6 +28,13 @@
 			
 		</div>
 	</div>
-	<button class="invoice-btn">УЗНАТЬ ЦЕНУ</button>
+	<details class="invoice-details">
+		<summary class="invoice-btn">УЗНАТЬ ЦЕНУ</summary>
+		
+		<div class="invoice-form__cover">
+			<h3>Запит на ціну</h3>
+			<%= render 'invoices/form', tile_collection: @tile_collection, plates: @plates %>
+		</div>
+	</details>
 </section>
 

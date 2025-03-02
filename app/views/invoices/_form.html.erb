@@ -1,0 +1,26 @@
+<div class="invoice-form">
+  <%= form_with model: @invoice, url: invoices_path, method: :post do |f| %>
+    <div class="invoice-form__row">
+      <%= f.label :name, "Ваше ім'я" %>
+      <%= f.text_field :name, required: true %>
+    </div>
+
+    <div class="invoice-form__row">
+      <%= f.label :phone, "Номер телефону" %>
+      <%= f.telephone_field :phone, required: true %>
+    </div>
+
+    <div class="invoice-form__row">
+      <%= f.label :tile_collection_id, "Колекція плитки" %>
+      <%= f.hidden_field :tile_collection_id, value: @tile_collection.id %>
+      <p><%= @tile_collection.title %></p>
+    </div>
+
+    <div class="invoice-form__row">
+      <%= f.label :plate_id, "Оберіть плитку" %>
+      <%= f.collection_select :plate_id, @plates, :id, :title, prompt: "Оберіть плитку" %>
+    </div>
+
+    <%= f.submit "Відправити запит", class: "invoice-btn" %>
+  <% end %>
+</div>

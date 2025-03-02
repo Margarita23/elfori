@@ -26,7 +26,6 @@ class Admin::TileCollectionsController < ApplicationController
 
   def update
     if @tile_collection.update(tile_collection_params)
-      flash[:notice] = "Колекція плитки оновлена."
       redirect_to admin_tile_collections_path, notice: 'Колекція оновлена!'
     else
       flash[:notice] = "Колекція плитки не оновлена."
